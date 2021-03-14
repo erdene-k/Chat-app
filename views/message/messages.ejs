@@ -1,0 +1,102 @@
+<%- include('../partials/_header') %>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>My messages</h1>
+        </div>
+    </div>
+
+    <!--List all the messages-->
+    <ul class="list-group list-group-vertical" id="messages">
+        <% messages.forEach(function(message) { %>
+            <div class="row">
+                <div class="col-md-12">
+                        <li class="list-group-item list-group-item-primary"><b><%= message.username %>:</b>       <%= message.content %></li>
+                        <!-- <li class="list-group-item list-group-item-warning"><%= message.content %></li> -->
+                </div>
+            </div>
+            <!-- <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= message.username %></h5>
+                  <p class="card-text"><%= message.content %></p>
+                </div>
+            </div> -->
+        <% }) %>
+    </ul>
+
+
+    <div class="row">
+        <div class="col-md-10">
+            <form action="/messages" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Type here .. " id="content" name="content">
+                    
+                    <div class="text-right">
+                        <a class="btn btn-danger" href="/" role="button">Cancel</a>
+                        <button type="submit" class="btn btn-primary" href="#" role="button">Send</button>
+                    </div>
+            </div>
+        </div>
+
+        </form>
+    </div>
+    <!-- 
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    $(function () {
+            var socket = io();
+            $('form').submit(function(){
+            socket.emit('chat message', $('#content').val(),getTest);
+            $('#message').val("");
+            getTest.val("");
+            return false;
+            });
+            socket.on('chat message', function(msg){
+            $('#messages').append($('<li>').text(msg));
+            });
+        });
+    </script> -->
+</div>
+<script>
+    var getTest = "<%= currentUser.username %>";
+</script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+   $(function () {
+        var socket = io();
+        $('form').submit(function(){
+        socket.emit('chat message', $('#content').val(),getTest);
+        $('#message').val("");
+        getTest.val("<%= currentUser.username %>");
+        return false;
+        });
+        socket.on('chat message', function(msg,user){
+            // $('#messages').append($('<li class="list-group-item list-group-item-primary">').text(bald + msg));
+                $('#messages').append($('<li class="list-group-item list-group-item-primary">').append("<b>"+user+": "+"</b>").append(msg)
+                );
+            // $('#messages').append($('<div class="col-md-4"><li class="list-group-item list-group-item-warning">').text(msg));
+        });
+    });
+</script>
+<!-- 
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+   $(function () {
+        var socket = io();
+        $('form').submit(function(){
+        socket.emit('chat message', $('#content').val(),getTest);
+        $('#message').val("");
+        getTest.val("");
+        return false;
+        });
+        socket.on('chat message', function(msg){
+           $('#messages').append($('<li>').text(msg));
+        });
+    });
+</script> -->
+
+<%- include('../partials/_footer') %>

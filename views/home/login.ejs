@@ -1,0 +1,46 @@
+<%- include('../partials/_header') %>
+<div class="container mt-5">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white text">
+                <h3>Log In</h3>
+            </div>
+            <div class="card-body">
+                <form class="form-signin" method="POST" action="/login">
+                    <!-- <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">@</span>
+                        <input type="text" class="form-control" placeholder="Email" name="email" aria-describedby="basic-addon1">
+                    </div> -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                        </div>
+                        <input class="form-control"  type="email" placeholder="Email@example.com" name="email" aria-describedby="addon" required>
+                    </div>
+                    <!-- <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
+                                aria-hidden="true"></span></span>
+                        <input type="password" class="form-control" placeholder="Password" name="password" aria-describedby="basic-addon1">
+                    </div> -->
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        </div>
+                        <input class="form-control" type="password" placeholder="Password" name="password" aria-describedby="addon" required>
+                    </div>
+    
+                    <!-- <input type="submit" class="btn btn-primary navbar-btn" value="Sign In" /> -->
+                    
+                    <div class="text-right">
+                        <!-- <a class="btn btn-danger" href="index.html" role="button">Cancel</a> -->
+                        <input type="submit" class="btn btn-primary" value="Sign in" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<%- include('../partials/_footer') %>
